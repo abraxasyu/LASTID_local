@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>
+function spoll() {
+	$.ajax({
+		url: "/",
+		type: "GET",
+		success: function(data) {
+			$('#dino-list').html(data);
+			console.log('polled');
+		},
+		error: function(data) {
+		},
+		dataType: "html",
+		complete: setTimeout(function() {spoll()}, 5000),
+		timeout:2000
+	});}
+$(document).ready(spoll);
+</script>
+</head>
+<body>
+<ul id="dino-list">
+{% include "index_subtemplate.html" %}
+</ul>
+</body>
+</html>

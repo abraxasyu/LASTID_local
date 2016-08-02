@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+	$("#inputname").on("keyup click input", function () {
+		if (this.value.length > 0) {
+		  $("#dino-list li").hide().filter(function () {
+			return $(this).text().toLowerCase().indexOf($("#inputname").val().toLowerCase()) != -1;
+		  }).show();
+		}
+		else {
+		  $("#dino-list li").show();
+		}
+	});
+});
+</script>
+</head>
+<body>
+<input type="search" class="search form-control" placeholder="Search Items" id="inputname">
+<ul id="dino-list"> Item List (time is in EST without DST):
+{% if idlist %}
+    <ul>
+    {% for nextid in idlist %}
+        <li>{{ nextid.nextid_id }} - {{ nextid.nextid_time }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No items in list.</p>
+{% endif %}
+</ul>
+</body>
+</html>

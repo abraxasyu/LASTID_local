@@ -1,0 +1,10 @@
+Item List (time is in EST without DST):
+{% if idlist %}
+    <ul>
+    {% for nextid in idlist %}
+        <li>{{ nextid.nextid_id }} - {{ nextid.nextid_time }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No items in list.</p>
+{% endif %}
